@@ -15,7 +15,13 @@ const containerVariants = {
       type: 'spring',
       delay: 0.5
     }
-  }
+  },
+  exit: {
+    x: '-100vw',
+    transition: {
+    ease: 'easeInOut',
+      }
+    }
 }
 
 const buttonVariants = {
@@ -49,6 +55,9 @@ const Base = ({ addBase, pizza }) => {
   return (
     <motion.div className="base container"
       variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
     >
       <h3>Step 1: Choose Your Base</h3>
       <ul>
@@ -67,10 +76,13 @@ const Base = ({ addBase, pizza }) => {
 
       {pizza.base && (
         <motion.div className="next"
+        variants={nextVariants}
         >
           <Link to="/toppings">
             <motion.button
               variants={buttonVariants}
+              initial="hidden"
+            animate="visible"  
             whileHover="hover"
             >
               Next
